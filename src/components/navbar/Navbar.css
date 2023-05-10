@@ -1,0 +1,41 @@
+*{
+        margin:0;
+        padding:0;
+        font-size:16px;
+        box-sizing: border-box;
+        font-family: 'EB Garamond', serif;
+        font-family: 'Poppins', sans-serif;
+}
+
+#navbar-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 4rem;
+        background-image: linear-gradient(lightblue, lightgreen);
+        position: sticky;
+}
+
+.navbar-item{
+        padding: 0 2rem;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+}
+
+.navbar-logo{
+        padding: 1rem;
+        color: orange;
+}
+
+#searchBox{
+        border-radius: 0.5rem;
+        width: 20rem;
+        height: 2rem;
+        padding: 1rem;
+        border: none;
+        
+}
+
+#searchBox:hover{box-shadow: 2px 2px 2px #888888;}
+
