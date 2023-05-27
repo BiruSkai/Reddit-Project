@@ -1,10 +1,11 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {Main} from "../main/Main";
 
 export const Login = () => {
-        const [details, setDetails] = useState({user:"", password:""});
-        const [login, setLogin] = useState(false);
+        const [user, setUser]= useState("");
+        const [password, setPassword]= useState("");
+        const [login, setLogin] = useState(true);
         
         const access = {
                 userOri: "admin",
@@ -13,8 +14,8 @@ export const Login = () => {
 
         function handleSubmit(e) {
                 e.preventDefault();
-                if(details.user == access.userOri && details.password == access.passwordOri) {
-                        return setLogin = true;
+                if(user === access.userOri && password === access.passwordOri) {
+                        setLogin(true);
                 }
         }
 
@@ -23,21 +24,21 @@ export const Login = () => {
                         <form id="login-form" onSubmit={handleSubmit}>
                                 <div className="login-item">
                                         <div>User:</div>
-                                        <input type="text" value={details.user} placeholder="user" onChange={e=>setDetails({...details, user: e.target.value})}/>
+                                        <input type="text" value={user} placeholder="user" onChange={e=>setUser(e.target.value)}/>
                                 </div>
                                 <div className="login-item">
                                         <div>Password:</div>
-                                        <input type="password" value={details.password} placeholder="password" onChange={e=>setDetails({...details, password: e.target.value})}/>
+                                        <input type="password" value={password} placeholder="password" onChange={e=>setPassword(e.target.value)}/>
                                 </div>      
                                         
-                                        <button type="submit">Submit</button>
+                                <button type="submit" >Submit</button>
                                         
                         </form>
                 )
 
   return (
     <div className="login-container">
-        {login?  <Link to="/main"/>: loginForm }
+        {login?  <Main setUser={setUser} setPassword={setPassword} setLogin={setLogin} loginForm={loginForm}/> : loginForm }
     </div>
   )
 }
