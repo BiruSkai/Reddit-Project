@@ -3,6 +3,6 @@ import { searchReducer } from "./components/features/search/SearchSlice";
 
 export const store = configureStore({
         reducer: {
-                search: searchReducer
+                search: searchReducer,
         }
 })

@@ -1,12 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { selectIsLoading, selectIserror, selectSearchItem } from '../search/SearchSlice';
+import { selectIsLoading, selectIsError, selectSearchItem } from '../search/SearchSlice';
 import Post from './Post';
 
 export const Posts = () => {
   const posts = useSelector(selectSearchItem);
   const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIserror);
+  const isError = useSelector(selectIsError);
 
   return (
     <div id="post-container" >

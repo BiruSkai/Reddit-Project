@@ -1,9 +1,9 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 
-export const searchItem = createAsyncThunk(
+export const fetchSearchItem = createAsyncThunk(
         "search/searchItem",
-        async (state) => {
-                const response = await fetch(`https://www.reddit.com/search.json?q=${state}`)
+        async (term) => {
+                const response = await fetch(`https://www.reddit.com/search.json?q=${term}`)
                 const json = response.json();
                 console.log(json);
                 return json;
@@ -13,29 +13,31 @@ export const searchItem = createAsyncThunk(
 const searchSlice = createSlice({
         name: "search",
         initialState: {
-                search: [],
+                search: {},
                 isLoading: false,
                 isError: false
         },
+        reducer: {},
         extraReducers: (builder) => {
                 builder
-                        .addCase(searchItem.pending, (state) => {
+                        .addCase(fetchSearchItem.pending, (state) => {
                                 state.isLoading = true;
                                 state.isError = false;
                         })
-                        .addCase(searchItem.fulfilled, (state, action) => {
+                        .addCase(fetchSearchItem.fulfilled, (state, action) => {
                                 state.isLoading = false;
                                 state.search = action.payload;
                                 state.isError = false;
                         })
-                        .addCase(searchItem.pending, (state) => {
+                        .addCase(fetchSearchItem.pending, (state) => {
                                 state.isLoading = false;
                                 state.isError = true;
                         })
         }
 })
 
+
 export const selectSearchItem = state => state.search.search;
 export const selectIsLoading = state => state.isLoading;
-export const selectIserror = state => state.isError;
+export const selectIsError = state => state.isError;
 export const searchReducer = searchSlice.reducer;
